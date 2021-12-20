@@ -1,0 +1,6 @@
+services:
+  reviews:
+    build: .
+    image: ghcr.io/nattaphonmek/bookinfo-reviews:dev
+    ports:
+      - "8082:9080"
