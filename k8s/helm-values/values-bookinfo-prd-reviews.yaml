@@ -14,4 +14,4 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 extraEnv:
   ENABLE_RATINGS: true
-  RATINGS_SERVICE: http://opsta.parfet.in.th/ratings
+  RATINGS_SERVICE: https://opsta.parfet.in.th/ratings
