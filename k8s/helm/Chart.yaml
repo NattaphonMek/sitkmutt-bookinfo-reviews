@@ -3,9 +3,9 @@ description: Bookinfo Reviews Service Helm Chart
 name: bookinfo-reviews
 version: 1.0.0
 appVersion: 1.0.0
-home: http://opsta.parfet.in.th/reviews
+home: http://opsta.konmek.cloud/reviews
 maintainers:
   - name: nattaphonmek
     email: nattaphon.mek@mail.kmutt.ac.th
 sources:
-  - https://github.com/NattaphonMek/opsta-bootcamp-bookinfo
+  - https://github.com/NattaphonMek/sitkmutt-bookinfo-reviews
