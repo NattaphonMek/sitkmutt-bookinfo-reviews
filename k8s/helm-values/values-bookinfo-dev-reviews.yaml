@@ -16,3 +16,4 @@ extraEnv:
   ENABLE_RATINGS: true
   RATINGS_SERVICE: https://dev.konmek.cloud/ratings
   STAR_COLOR: red
+  COMMIT_SHA: CHANGEME
