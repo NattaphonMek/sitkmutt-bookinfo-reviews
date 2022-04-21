@@ -1,0 +1,36 @@
+name: deploy-prd
+on:
+  workflow_dispatch:
+    inputs:
+      deploy-version:
+        description: 'Version to deploy'
+        required: true
+jobs:
+  deploy-prd:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: refs/tags/${{ github.event.inputs.deploy-version }}
+
+      - name: Google auth
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      
+      - name: Deploy
+        run: |
+          gcloud container clusters get-credentials opsta-bootcamp --zone asia-southeast1-a --project trans-dynamics-346308
+
+          helm upgrade -f k8s/helm-values/values-bookinfo-prd-reviews.yaml --wait \
+                --set extraEnv.COMMIT_SHA=${{github.sha}} \
+                --set reviews.tag=${{ github.event.inputs.deploy-version }} \
+                --namespace bookinfo-prd bookinfo-prd-reviews k8s/helm
