@@ -1,0 +1,19 @@
+reviews:
+  namespace: bookinfo-uat
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 9080
+  image: ghcr.io/nattaphonmek/bookinfo-reviews
+  tag: uat
+ingress:
+  host: uat.konmek.cloud
+  path: "/reviews(/|$)(.*)"
+  serviceType: ClusterIP
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+extraEnv:
+  ENABLE_RATINGS: true
+  RATINGS_SERVICE: https://uat.konmek.cloud/ratings
+  STAR_COLOR: red
+  COMMIT_SHA: CHANGEME

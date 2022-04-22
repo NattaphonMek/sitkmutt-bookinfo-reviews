@@ -1,4 +1,8 @@
-apply plugin: 'war'
+plugins {
+    id 'war'
+    id 'jacoco'
+    id 'org.sonarqube' version '3.3'
+}
 
 sourceCompatibility = 1.8
 
@@ -16,4 +20,18 @@ dependencies {
     providedCompile 'javax.enterprise.concurrent:javax.enterprise.concurrent-api:1.0'
     providedCompile 'javax.enterprise:cdi-api:1.2'
     providedCompile 'io.swagger:swagger-annotations:1.5.0'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'https://sonarcloud.io'
+        property 'sonar.organization', 'opsta-bootcamp'
+        property 'sonar.projectKey', 'NattaphonMek_sitkmutt-bookinfo-reviews'
+    }
 }
