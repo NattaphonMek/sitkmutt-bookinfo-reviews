@@ -1,4 +1,7 @@
 apply plugin: 'war'
+apply plugin: 'jacoco'
+apply plugin: 'java'
+applt plugin: 'sonarqube'
 
 sourceCompatibility = 1.8
 
@@ -16,4 +19,20 @@ dependencies {
     providedCompile 'javax.enterprise.concurrent:javax.enterprise.concurrent-api:1.0'
     providedCompile 'javax.enterprise:cdi-api:1.2'
     providedCompile 'io.swagger:swagger-annotations:1.5.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enable = true
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'https://sonarcloud.io'
+        property 'sonar.organization', 'opsta-bootcamp'
+        property 'sonar.projectKey', 'NattaphonMek_sitkmutt-bookinfo-reviews'
+    }
 }
