@@ -1,6 +1,8 @@
-apply plugin: 'war'
-apply plugin: 'jacoco'
-applt plugin: 'org.sonarqube'
+plugins {
+    id 'war'
+    id 'jacoco'
+    id 'org.sonarqube' version '3.3'
+}
 
 sourceCompatibility = 1.8
 
