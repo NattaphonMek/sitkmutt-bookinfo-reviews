@@ -115,7 +115,7 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: release-candidate
-      - run: ./gradlew build jacocoTestReport sonarqube --info
+      - run: gradle build jacocoTestReport sonarqube --info
         env:
           # Needed to get some information about the pull request, if any
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
